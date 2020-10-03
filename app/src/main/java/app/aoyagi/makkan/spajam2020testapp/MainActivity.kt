@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
+import tensorflow as tf
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +28,8 @@ class MainActivity : AppCompatActivity() {
 
             val posenet = Posenet(this.applicationContext)
             val person = posenet.estimateSinglePose(imageBitmap)
+
+
         }
 
 
