@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "535360613838",
+    "firebase_url": "https://ml-kit-95a5f.firebaseio.com",
+    "project_id": "ml-kit-95a5f",
+    "storage_bucket": "ml-kit-95a5f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:535360613838:android:e2236788bef3e5bcfd0f9f",
+        "android_client_info": {
+          "package_name": "app.aoyagi.makkan.spajam2020testapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "535360613838-p78tr1a4kjq4puer4rt2585c1ij646l9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnHyNZTjSDlKgn_odGHvQ7OuU0d1-fQ48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "535360613838-p78tr1a4kjq4puer4rt2585c1ij646l9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

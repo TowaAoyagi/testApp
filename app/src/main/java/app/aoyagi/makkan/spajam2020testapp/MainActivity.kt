@@ -2,20 +2,20 @@ package app.aoyagi.makkan.spajam2020testapp
 
 import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.Paint
 import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraManager
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.SparseIntArray
 import android.view.Surface
-import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.Task
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.pose.Pose
@@ -26,6 +26,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var uri: Uri
+    private val pose: Pose? = null
+    private val showInFrameLikelihood = false
+    private val leftPaint: Paint? = null
+    private val rightPaint: Paint? = null
+    private val whitePaint: Paint? = null
 
     lateinit var bitmap: Bitmap
     val REQUEST_VIDEO_CAPTURE = 1
@@ -38,13 +43,30 @@ class MainActivity : AppCompatActivity() {
         ORIENTATIONS.append(Surface.ROTATION_270, 270)
     }
 
+    fun PoseGraphic(overlay: GraphicOverlay?, pose: Pose, showInFrameLikelihood: Boolean) {
+        super(overlay)
+        pose = pose
+        showInFrameLikelihood = showInFrameLikelihood
+        whitePaint = Paint()
+        whitePaint.setColor(Color.WHITE)
+        whitePaint.setTextSize(com.google.mlkit.vision.demo.java.posedetector.PoseGraphic.IN_FRAME_LIKELIHOOD_TEXT_SIZE)
+        leftPaint = Paint()
+        leftPaint.setColor(Color.GREEN)
+        rightPaint = Paint()
+        rightPaint.setColor(Color.YELLOW)
+    }
+
     /**
      * Get the angle by which an image must be rotated given the device's current
      * orientation.
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Throws(CameraAccessException::class)
-    private fun getRotationCompensation(cameraId: String, activity: Activity, isFrontFacing: Boolean): Int {
+    private fun getRotationCompensation(
+        cameraId: String,
+        activity: Activity,
+        isFrontFacing: Boolean
+    ): Int {
         // Get the device's current rotation relative to its "native" orientation.
         // Then, from the ORIENTATIONS table, look up the angle the image must be
         // rotated to compensate for the device's rotation.
@@ -64,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         }
         return rotationCompensation
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -74,7 +97,6 @@ class MainActivity : AppCompatActivity() {
                     startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE)
                 }
             }
-
 
 
         }
@@ -92,15 +114,17 @@ class MainActivity : AppCompatActivity() {
                 uri = intent.data!!
             }
             bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
-            imageFromBitmap(bitmap,poseDetector)
+            imageFromBitmap(bitmap, poseDetector)
         }
     }
-    private fun imageFromBitmap(bitmap: Bitmap,poseDetector:PoseDetector) {
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private fun imageFromBitmap(bitmap: Bitmap, poseDetector: PoseDetector) {
         val rotationDegrees = 0
         // [START image_from_bitmap]
         val image = InputImage.fromBitmap(bitmap, 0)
         // [END image_from_bitmap]
-        Task<Pose> result: = poseDetector.process(image)
+        Task<Pose> = poseDetector.process(image)
             .addOnSuccessListener { results ->
                 val allPoseLandmarks = pose.getAllPoseLandmarks()
             }
