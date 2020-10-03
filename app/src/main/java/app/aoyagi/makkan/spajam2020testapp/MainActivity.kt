@@ -1,6 +1,7 @@
 package app.aoyagi.makkan.spajam2020testapp
 
 import android.content.Intent
+import android.hardware.Camera
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -22,6 +23,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-
 }
+
+
+
+
+
+
