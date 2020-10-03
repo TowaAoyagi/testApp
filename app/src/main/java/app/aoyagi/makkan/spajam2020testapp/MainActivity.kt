@@ -1,5 +1,6 @@
 package app.aoyagi.makkan.spajam2020testapp
 
+import android.Manifest
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
@@ -16,10 +17,9 @@ import app.aoyagi.makkan.spajam2020testapp.MainActivity.Companion.REQUEST_CODE_P
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    val REQUEST_VIDEO_CAPTURE = 1
-    lateinit var uri: Uri
-    lateinit var bitmap: Bitmap
-
+    // 定数
+    private  val REQUEST_CODE_PERMISSIONS :Int = 101
+    private val interpriter :PoseNetInterpriter =
 
     companion object {
         const val REQUEST_CODE_PERMISSION: Int = 200
