@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "SPAJAM2020 testApp"
